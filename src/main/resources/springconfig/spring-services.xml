@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+    <bean id="servicesFactory" class="de.paluch.status.status.model.ServicesFactory">
+        <property name="configLocation" value="classpath:services.xml"/>
+    </bean>
+
+    <bean id="uiOverviewModelBuilder" class="de.paluch.status.status.control.UIOverviewModelBuilder"/>
+    <bean id="uiEventsModelBuilder" class="de.paluch.status.status.control.UIEventsModelBuilder"/>
+    <bean id="checkerJobController" class="de.paluch.status.status.control.CheckerJobController"/>
+
+    <bean id="init" class="de.paluch.status.status.control.InitializingController"/>
+
+    <bean name="cleanupJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.paluch.status.status.CleanupJob"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="checkerJobController" value-ref="checkerJobController"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="cleanupJobTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="cleanupJobDetail"/>
+        <property name="startDelay" value="5000"/>
+        <property name="repeatInterval" value="3600000"/>
+    </bean>
+
+
+    <bean name="checkJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.paluch.status.status.CheckJob"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="checkerJobController" value-ref="checkerJobController"/>
+                <entry key="initializingController" value-ref="init"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="checkJobTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="checkJobDetail"/>
+        <property name="startDelay" value="20000"/>
+        <property name="repeatInterval" value="120000"/>
+    </bean>
+
+
+    <!-- *** Start Quartz engine *** -->
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="autoStartup" value="true"/>
+        <property name="triggers">
+            <list>
+                <ref bean="cleanupJobTrigger"/>
+                <ref bean="checkJobTrigger"/>
+            </list>
+        </property>
+        <property name="quartzProperties">
+            <props>
+                <!-- ThreadPool -->
+                <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+                <prop key="org.quartz.threadPool.threadCount">4</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

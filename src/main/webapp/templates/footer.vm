@@ -1,0 +1,41 @@
+<div id="legend">
+    <h4> Status Legend </h4>
+    <ul>
+
+        <li>
+            <img class="sym" src="${contextPath}images/icons/fugue/cross-circle.png" alt="">
+
+            <p>The service is currently down</p>
+        </li>
+
+        <li>
+            <img class="sym" src="${contextPath}images/icons/fugue/tick-circle.png" alt="">
+
+            <p>The service is up</p>
+        </li>
+
+        <li>
+            <img class="sym" src="${contextPath}images/icons/fugue/exclamation.png" alt="">
+
+            <p>The service is experiencing intermittent problems</p>
+        </li>
+
+        <li>
+            <img class="sym" src="${contextPath}images/icons/fugue/clock.png" alt="">
+
+            <p>The web service is under-going maintenance</p>
+        </li>
+
+    </ul>
+</div>
+
+</div>
+<div id="push"></div>
+</div>
+<div id="footer">
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="refresh" content="120">
+    <title>DIY Service Status [${model.environment}]</title>
+    <link rel="stylesheet" href="${contextPath}css/reset.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="${contextPath}css/style.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="${contextPath}css/gh-buttons.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="${contextPath}css/font-awesome.css" type="text/css" media="screen"/>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+
+        <img id="logo" src="${contextPath}images/logo.png" alt="Logo"/>
+        <a href="${contextPath}"><h1 id="title">DIY Service Status [${model.environment}]</h1></a>
+    </div>
+    <div id="content">

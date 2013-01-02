@@ -1,0 +1,37 @@
+#parse( "templates/header.vm" )
+
+<table id="services" class="data">
+    <thead>
+    <tr>
+    <th>Service</th>
+    <th class="today">Current</th>
+        #foreach( $date in $model.dates )
+        <th>$model.getDate($date)</th>
+        #end
+    </thead>
+
+    <tbody>
+
+        #foreach( $service in $model.services )
+        <tr id="$service.serviceKey">
+            <td>$service.name</td>
+            <td class="status highlight">
+                <img class="sym" src="${contextPath}images/icons/fugue/${model.currentImage($service)}.png"
+                     alt="$model.currentMessage($service)" title="$model.currentMessage($service)" />
+            </td>
+
+            #foreach( $date in $model.dates )
+
+                <td class="status">
+                    <a href="${contextPath}status/$service.serviceKey/$model.getLinkDate($date)">
+                        <img class="sym" src="${contextPath}images/icons/fugue/${model.image($service, $date)}.png"
+                             alt="$model.message($service, $date)" title="$model.message($service, $date)"/>
+                    </a>
+                </td>
+            #end
+        </tr>
+        #end
+    </tbody>
+</table>
+
+#parse( "templates/footer.vm" )

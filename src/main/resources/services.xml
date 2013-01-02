@@ -1,0 +1,11 @@
+<services environment="INT">
+
+    <service id="paluch.biz" name="paluch.biz" warnServiceLevel="80" failServiceLevel="50">
+        <check name="healthcheck" performanceWarnMs="750">
+            http://www.paluch.biz/
+        </check>
+        <jenkinsMaintenanceCheck>
+            http://jenkins.paluch.biz/jenkins/job/Some-Job-Name
+        </jenkinsMaintenanceCheck>
+    </service>
+</services>

@@ -1,0 +1,58 @@
+#parse( "templates/header.vm" )
+
+<div id="webservices" class="frame">
+    <h2>$model.service.name</h2>
+
+    <p id="serviceDescription">$model.serviceLevelText</p>
+
+    #if( $model.isAllOK() )
+        <section id="noevents">
+        </section>
+        <section id="allgood">
+            <img src="${contextPath}images/icons/iconic/check_alt.png" alt="Up"/>
+
+            <p>No strange events, this service is up and running smoothly.</p>
+
+        </section>
+    #else
+        <table class="event-log" cellpadding="10">
+            <thead>
+            <tr>
+                <th class="time-header">Time</th>
+                <th class="status-header">Status</th>
+                <th>Message</th>
+
+            </tr>
+            </thead>
+            <tbody id="events-tbody">
+                #foreach($state in $model.serviceStates)
+
+                    #if (! $state.isSimilar($previous))
+                    <tr>
+                        <td>$model.getDate($state)
+                            #if($state.displayOffsetToNow)
+                                <br><span class="offset">$state.offsetToNow</span>
+                            #end
+                        </td>
+                        <td class="status highlight" id="${state.id}">
+                            <a href="${contextPath}jpa/states/${state.id}">
+                                <img src="${contextPath}images/icons/fugue/${model.image($state)}.png"
+                                     alt="$state.checkKey" title="$state.checkKey">
+                            </a>
+                        </td>
+                        <td>#if ( $state.message)
+                ${state.message}
+                #end
+                        </td>
+                    </tr>
+                    #end
+                    #set( $previous = $state )
+
+                #end
+            </tbody>
+        </table>
+    #end
+
+</div>
+
+#parse( "templates/footer.vm" )
