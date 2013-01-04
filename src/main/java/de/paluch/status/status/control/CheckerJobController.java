@@ -150,6 +150,11 @@ public class CheckerJobController {
                                                Map<ServiceStateEntity, String> detailMessages) {
         boolean checkedMaintenance = false;
 
+        if(service.getJenkinsMaintenanceCheck() == null)
+        {
+            return checkedMaintenance;
+        }
+
         for (JenkinsMaintenanceCheck jenkinsCheck : service.getJenkinsMaintenanceCheck()) {
             Checker checker = new Checker();
             try {
