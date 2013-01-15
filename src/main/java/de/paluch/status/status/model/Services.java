@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 22.11.12 21:03
  */
 @XmlRootElement(name = "services")

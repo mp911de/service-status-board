@@ -1,7 +1,7 @@
 package de.paluch.status.status.dao;
 
 /**
- * @author <a href="mailto:martina.dukadinova@1und1.de">Martina Dukadinova</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  */
 public class DiyMwPersistenceException extends RuntimeException {
 

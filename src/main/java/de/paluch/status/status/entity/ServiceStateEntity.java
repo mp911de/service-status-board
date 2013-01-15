@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 22.11.12 20:41
  */
 @Entity

@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 25.11.12 10:02
  */
 @Path("/")

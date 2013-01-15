@@ -9,7 +9,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 26.11.12 14:41
  */
 public class ServiceState {
